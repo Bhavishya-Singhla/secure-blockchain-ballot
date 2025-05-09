@@ -19,6 +19,45 @@ Welcome to **BlockVote**, an innovative online voting platform powered by **Ethe
 - 🌐 **Blockchain Network**: Ganache (Local Ethereum Network)
 - 👛 **Wallet Integration**: MetaMask
 
+
+## 🏗️ **System Architecture**
+
+```mermaid
+graph TB
+    subgraph Frontend["🖥️ Frontend Layer"]
+        UI["React.js UI Components"]--"User Interaction"-->Web3["Web3.js Integration"];
+        Web3--"Blockchain Interaction"-->MM["MetaMask Wallet"];
+    end
+
+    subgraph Blockchain["⛓️ Blockchain Layer"]
+        Contract["Smart Contract<br/>(Voting.sol)"];
+        Network["Local Network<br/>(Ganache)"];
+    end
+
+    subgraph Users["👥 User Types"]
+        Admin["👨‍💼 Admin"];
+        Voter["🗳️ Voter"];
+    end
+
+    MM--"Transaction Signing"-->Network;
+    Network--"State Management"-->Contract;
+    
+    Admin--"Manages"-->Contract;
+    Voter--"Casts Vote"-->Contract;
+
+    Contract--"Election Data"-->UI;
+    Contract--"Vote Results"-->UI;
+```
+
+
+### 🔄 Data Flow
+1. Admin deploys the smart contract and manages election settings
+2. Voters connect their MetaMask wallet to authenticate
+3. Smart contract validates voter eligibility
+4. Validated voters cast their votes through the UI
+5. Votes are recorded on the blockchain
+6. Results are computed and displayed in real-time
+
 ## ✨ **Key Features:**
 - 🌐 **Decentralized & Transparent**: No single point of failure, ensuring fairness.
 - 🛡️ **Tamper-Proof & Immutable**: All votes are recorded on a public ledger, providing trust and accountability.
